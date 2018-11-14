@@ -13,7 +13,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "d3dUtility.h"
-
+#include "test.h"
 //
 // Globals
 //
@@ -91,7 +91,11 @@ int WINAPI WinMain(HINSTANCE hinstance,
 		return 0;
 	}
 
-	d3d::EnterMsgLoop( Display );
+	if (!test::CheckHWTransAndLight()) {
+		::MessageBox(0, "Not Supports Hardware Vertex Processing", "test", 0);
+	}
+
+	d3d::EnterMsgLoop(Display);
 
 	Cleanup();
 

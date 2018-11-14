@@ -79,6 +79,13 @@ bool d3d::InitD3D(
 	D3DCAPS9 caps;
 	d3d9->GetDeviceCaps(D3DADAPTER_DEFAULT, deviceType, &caps);
 
+	DWORD MultiSampleType;
+	d3d9->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT, deviceType, D3DFMT_A8R8G8B8, true, D3DMULTISAMPLE_2_SAMPLES, &MultiSampleType);
+
+	TCHAR str[20];
+	wsprintf(str, "%d",MultiSampleType);
+	::MessageBox(0, str, 0, 0);
+
 	int vp = 0;
 	if( caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT )
 		vp = D3DCREATE_HARDWARE_VERTEXPROCESSING;
