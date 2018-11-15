@@ -79,9 +79,10 @@ bool d3d::InitD3D(
 	D3DCAPS9 caps;
 	d3d9->GetDeviceCaps(D3DADAPTER_DEFAULT, deviceType, &caps);
 
+	// check multi sample type
 	DWORD MultiSampleType;
 	d3d9->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT, deviceType, D3DFMT_A8R8G8B8, true, D3DMULTISAMPLE_2_SAMPLES, &MultiSampleType);
-
+	// dword to lpcstr
 	TCHAR str[20];
 	wsprintf(str, "%d",MultiSampleType);
 	::MessageBox(0, str, 0, 0);
