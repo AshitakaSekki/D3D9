@@ -43,7 +43,7 @@ bool Display(float timeDelta)
 		// Instruct the device to set each pixel on the back buffer black -
 		// D3DCLEAR_TARGET: 0x00000000 (black) - and to set each pixel on
 		// the depth buffer to a value of 1.0 - D3DCLEAR_ZBUFFER: 1.0f.
-		Device->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, 0);
+		Device->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0xff007733, 1.0f, 0);
 
 		// Swap the back and front buffers.
 		Device->Present(0, 0, 0, 0);
