@@ -130,7 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="d3dInit.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="d3dUtility.cpp" />
   </ItemGroup>
   <ItemGroup>

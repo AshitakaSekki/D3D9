@@ -18,3 +18,9 @@ struct ColorVertex
 	static const DWORD FVF;
 };
 const DWORD ColorVertex::FVF = D3DFVF_XYZ | D3DFVF_DIFFUSE;
+
+bool Setup()
+{
+	ColorVertex T[3];
+	T[]
+}
