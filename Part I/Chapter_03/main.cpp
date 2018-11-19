@@ -75,26 +75,26 @@ bool Setup()
 	// Fill the buffers with vertex data.
 	//
 
-	Vertex* Triangle;
-	Triangle_VB->Lock(0, 0, (void**)&Triangle, 0);
+	Vertex* Triangle_Vertices;
+	Triangle_VB->Lock(0, 0, (void**)&Triangle_Vertices, 0);
 
-	Triangle[0] = Vertex(-1.0f, 0.0f, 1.0f);
-	Triangle[1] = Vertex(0.0f, 1.0f, 1.0f);
-	Triangle[2] = Vertex(1.0f, 0.0f, 1.0f);
+	Triangle_Vertices[0] = Vertex(-1.0f, 0.0f, 1.0f);
+	Triangle_Vertices[1] = Vertex(0.0f, 1.0f, 1.0f);
+	Triangle_Vertices[2] = Vertex(1.0f, 0.0f, 1.0f);
 
 	Triangle_VB->Unlock();
 
-	Vertex* Cube;
-	Cube_VB->Lock(0, 0, (void**)&Cube, 0);
+	Vertex* Cube_Vertices;
+	Cube_VB->Lock(0, 0, (void**)&Cube_Vertices, 0);
 
-	Cube[0] = Vertex(-1.0f, -1.0f, -1.0f);
-	Cube[1] = Vertex(-1.0f,  1.0f, -1.0f);
-	Cube[2] = Vertex( 1.0f,  1.0f, -1.0f);
-	Cube[3] = Vertex( 1.0f, -1.0f, -1.0f);
-	Cube[4] = Vertex(-1.0f, -1.0f,  1.0f);
-	Cube[5] = Vertex(-1.0f,  1.0f,  1.0f);
-	Cube[6] = Vertex( 1.0f,  1.0f,  1.0f);
-	Cube[7] = Vertex( 1.0f, -1.0f,  1.0f);
+	Cube_Vertices[0] = Vertex(-1.0f, -1.0f, -1.0f);
+	Cube_Vertices[1] = Vertex(-1.0f,  1.0f, -1.0f);
+	Cube_Vertices[2] = Vertex( 1.0f,  1.0f, -1.0f);
+	Cube_Vertices[3] = Vertex( 1.0f, -1.0f, -1.0f);
+	Cube_Vertices[4] = Vertex(-1.0f, -1.0f,  1.0f);
+	Cube_Vertices[5] = Vertex(-1.0f,  1.0f,  1.0f);
+	Cube_Vertices[6] = Vertex( 1.0f,  1.0f,  1.0f);
+	Cube_Vertices[7] = Vertex( 1.0f, -1.0f,  1.0f);
 
 	Cube_VB->Unlock();
 
