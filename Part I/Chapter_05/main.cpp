@@ -83,9 +83,9 @@ bool Setup()
 	//
 
 	D3DMATERIAL9 mtrl;
-	mtrl.Ambient = d3d::WHITE;
-	mtrl.Diffuse = d3d::WHITE;
-	mtrl.Specular = d3d::WHITE;
+	mtrl.Ambient = d3d::RED;
+	mtrl.Diffuse = d3d::RED;
+	mtrl.Specular = d3d::GREEN;
 	mtrl.Emissive = d3d::BLACK;
 	mtrl.Power = 5.0f;
 
@@ -95,16 +95,18 @@ bool Setup()
 	// Setup a directional light.
 	//
 
-	//D3DLIGHT9 dir;
-	//::ZeroMemory(&dir, sizeof(dir));
-	//dir.Type = D3DLIGHT_DIRECTIONAL;
-	//dir.Diffuse = d3d::WHITE;
-	//dir.Specular = d3d::WHITE * 0.3f;
-	//dir.Ambient = d3d::WHITE * 0.6f;
-	//dir.Direction = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-
 	D3DLIGHT9 dir;
+	::ZeroMemory(&dir, sizeof(dir));
+	dir.Type = D3DLIGHT_DIRECTIONAL;
+	dir.Diffuse = d3d::RED;
+	dir.Specular = d3d::RED * 0.3f;
+	dir.Ambient = d3d::RED * 0.6f;
+	dir.Direction = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 
+	D3DLIGHT9 poi;
+	D3DXVECTOR3 position = D3DXVECTOR3(2.0f, 0.0f, 0.0f);
+	D3DXCOLOR color = d3d::GREEN;
+	poi = d3d::InitPointLight(&position, &color);
 
 	//
 	// Set and Enable the light.
@@ -112,6 +114,9 @@ bool Setup()
 
 	Device->SetLight(0, &dir);
 	Device->LightEnable(0, true);
+
+	Device->SetLight(1, &poi);
+	Device->LightEnable(1, true);
 
 	//
 	// Turn on specular lighting and instruct Direct3D
