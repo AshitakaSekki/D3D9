@@ -122,6 +122,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Image Include="alphachannel.bmp" />
+    <Image Include="crate.jpg" />
+    <Image Include="cratewAlpha.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="d3dUtility.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3dUtility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
