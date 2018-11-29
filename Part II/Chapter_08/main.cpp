@@ -39,6 +39,7 @@ D3DMATERIAL9 TeapotMtrl = d3d::YELLOW_MTRL;
 
 void RenderScene();
 void RenderMirror();
+void RenderShadow();
 
 //
 // Classes and Structures
@@ -255,6 +256,8 @@ bool Display(float timeDelta)
 
 		RenderMirror();
 
+		RenderShadow();
+
 		Device->EndScene();
 		Device->Present(0, 0, 0, 0);
 	}
@@ -370,6 +373,58 @@ void RenderMirror()
 	Device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
 	Device->SetRenderState(D3DRS_STENCILENABLE, false);
 	Device->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+}
+
+void RenderShadow()
+{
+	Device->SetRenderState(D3DRS_STENCILENABLE, true);
+	Device->SetRenderState(D3DRS_STENCILFUNC, D3DCMP_EQUAL);
+	Device->SetRenderState(D3DRS_STENCILREF, 0x0);
+	Device->SetRenderState(D3DRS_STENCILMASK, 0xffffffff);
+	Device->SetRenderState(D3DRS_STENCILWRITEMASK, 0xffffffff);
+	Device->SetRenderState(D3DRS_STENCILZFAIL, D3DSTENCILOP_KEEP);
+	Device->SetRenderState(D3DRS_STENCILFAIL, D3DSTENCILOP_KEEP);
+	Device->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILOP_INCR); // increment to 1
+
+	// position shadow
+	D3DXVECTOR4 lightDirection(0.707f, -0.707f, 0.707f, 0.0f);
+	D3DXPLANE groundPlane(0.0f, -1.0f, 0.0f, 0.0f);
+
+	D3DXMATRIX S;
+	D3DXMatrixShadow(
+		&S,
+		&lightDirection,
+		&groundPlane);
+
+	D3DXMATRIX T;
+	D3DXMatrixTranslation(
+		&T,
+		TeapotPosition.x,
+		TeapotPosition.y,
+		TeapotPosition.z);
+
+	D3DXMATRIX W = T * S;
+	Device->SetTransform(D3DTS_WORLD, &W);
+
+	// alpha blend the shadow
+	Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	D3DMATERIAL9 mtrl = d3d::InitMtrl(d3d::BLACK, d3d::BLACK, d3d::BLACK, d3d::BLACK, 0.0f);
+	mtrl.Diffuse.a = 0.5f; // 50% transparency.
+
+	// Disable depth buffer so that z-fighting doesn't occur when we
+	// render the shadow on top of the floor.
+	Device->SetRenderState(D3DRS_ZENABLE, false);
+
+	Device->SetMaterial(&mtrl);
+	Device->SetTexture(0, 0);
+	Teapot->DrawSubset(0);
+
+	Device->SetRenderState(D3DRS_ZENABLE, true);
+	Device->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+	Device->SetRenderState(D3DRS_STENCILENABLE, false);
 }
 
 //
