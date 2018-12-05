@@ -31,5 +31,11 @@
     <None Include="diffuse.hlsl">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="toon.hlsl">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="outline.hlsl">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

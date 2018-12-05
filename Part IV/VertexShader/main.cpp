@@ -30,7 +30,7 @@ bool Setup()
 	ID3DXBuffer* shader = 0;
 	ID3DXBuffer* errorBuffer = 0;
 
-	hr = D3DXCompileShaderFromFile("diffuse.hlsl", 0, 0, "Main", "vs_1_1", D3DXSHADER_ENABLE_BACKWARDS_COMPATIBILITY, &shader, &errorBuffer, &DiffuseConstTable);;
+	hr = D3DXCompileShaderFromFile("outline.hlsl", 0, 0, "Main", "vs_1_1", D3DXSHADER_ENABLE_BACKWARDS_COMPATIBILITY, &shader, &errorBuffer, &DiffuseConstTable);;
 
 	if (errorBuffer)
 	{
