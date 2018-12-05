@@ -4,7 +4,7 @@ matrix ViewProjMatrix;
 vector AmbientMtrl;
 vector DiffuseMtrl;
 
-static vector LightDirection;
+vector LightDirection;
 
 vector DiffuseLightIntensity = { 0.0f, 0.0f, 1.0f, 1.0f };
 vector AmbientLightIntensity = { 0.0f, 0.0f, 0.2f, 1.0f };
